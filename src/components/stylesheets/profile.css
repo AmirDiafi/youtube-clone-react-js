@@ -1,0 +1,157 @@
+.profile .user {
+    margin: 0 auto 50px
+}
+
+.profile .user .background {
+    height: 100px;
+    background: #333;
+    position: relative;
+    border-bottom: 3px solid #9C27B0;
+}
+
+.profile .user .background img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.profile .user .picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background: #9C27B0;
+    position: relative;
+    top: -20px;
+    z-index: 2;
+    position: relative;
+}
+
+.profile .user .picture img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    padding: 3px
+}
+
+.picture .picture-form {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px
+}
+
+.background .background-form {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.background .background-form input,
+.picture .picture-form input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+}
+
+.background .background-form span,
+.picture .picture-form span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    border-radius: 100%;
+    background: rgba(0, 0, 0, .7);
+    color :#FFF;
+    text-align: center;
+    transition: all .3s linear
+}
+
+.background .background-form span img {
+    width: 20px;
+    height: 20px;
+}
+
+.background .background-form:hover span {
+    background: #000
+}
+
+.background-view,
+.picture-view {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, .7);
+    position: fixed;
+    z-index: 3;
+    display: none;
+}
+
+.background-view .view,
+.picture-view .view {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-30%);
+    width: 60%;
+    height: 200px;
+    background: #FFF;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    transition: all .3s linear;
+}
+
+.picture-view .view {
+    height: 300px
+}
+
+.background-view .view img,
+.picture-view .view img {
+    display: inline-block;
+    width: 95%;
+    margin: 10px auto;
+    height: 50%;
+    background: #333;
+    border-radius: 5px;
+    transition: all .3s linear;
+}
+
+.picture-view .view img {
+    height: 200px;
+    width:200px;
+    border-radius: 100%
+}
+
+.background-view .view button,
+.picture-view .view button{
+    background: #9c27b0;
+    color: #FFF;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.background-view .view span,
+.picture-view .view span {
+    position: absolute;
+    color: #FFF;
+    top: -10px;
+    left: -10px;
+    border-radius: 100%;
+    background: #9C27B0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
