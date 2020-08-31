@@ -1,0 +1,258 @@
+/* .video-card .item{
+    margin:0
+} */
+
+* {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.like > svg{
+    color: rgb(0, 255, 0);
+}
+
+
+.video-card .item .video.main{
+    margin:  20px 0 0;
+    position: relative;
+    height:250px
+}
+
+.video-card .item .video.main video {
+    position: relative;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background :#333
+}
+
+.video-card .item .video.main > span {
+    position: absolute;
+    top:50%;
+    transform:translateY(-50%);
+    z-index: 2;
+    color: #FFF;
+    cursor: pointer;
+    transition: all .3s linear;
+    font-size: 30px;
+    display: none;
+}
+
+.video-card .item .video.main span.play-pause {
+    left: 50%;
+    font-size: 40px;
+    transform: translateX(-50%);
+}
+
+.video-card .item .video.main span.replay {
+    left: 20%;
+    transform: translateX(-20%);
+}
+
+.video-card .item .video.main span.forward {
+    right: 20%;
+    transform: translateX(-20%);
+}
+
+.video-card .item .video.main span.duration {
+    top: 25px;
+    right: 10px;
+    width:60px;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    background: rgba(0, 255, 0, 0.651);
+    border-radius: 10px;
+    cursor: default;
+}
+
+.video-card .item .video.main .volume {
+    top: 15px;
+    left: 10px;
+    position: absolute;
+    display: none;
+    color: #FFF;
+}
+
+.video-card .item .video.main .volume span.mute {
+    display: inline-block;
+    width:30px;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    background: rgba(0, 255, 0, 0.651);
+    border-radius: 100%;
+    margin-right: 10px;
+    cursor: pointer;
+    line-height: 25px
+}
+
+.video-card .item .video.main .volume input {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    width:0;
+    opacity:0;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px;
+    border-radius: 20px;
+    transition: all .3s linear
+}
+
+.video-card .item .video.main .volume:hover input {
+    width:100px;
+    opacity:1;
+}
+.video-card .item .video.main .volume input[type='range']::-webkit-slider-thumb {
+    box-shadow: -407px 0 0 400px rgb(0, 255, 0);
+}
+
+.video-card .item .video.main .volume input[type='range']::-webkit-slider-runnable-track {
+    border-radius: 10px;
+}
+
+.video-card .item .video.main span.duration.hide {
+    display: none !important;
+}
+
+.video-card .item .video.main .playback-rate {
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #EEE;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    display: none;
+    transition: all .3s linear;
+}
+
+.video-card .item .video.main:hover > span,
+.video-card .item .video.main:hover .playback-rate,
+.video-card .item .video.main:hover div.volume {
+    display: inline-block
+}
+
+.video-card .item .video.main .playback-rate span.speed {
+    cursor: pointer;
+    color: rgb(0, 255, 0);
+    margin: 0 10px;
+    display: inline-block
+}
+
+.video-card .item .video.main .playback-rate span.speed-value {
+    /* display: none; */
+    transition: all .3s linear;
+}
+
+/* .video-card .item .video.main .playback-rate:hover span.speed-value {
+    display: inline-block
+} */
+
+.video-card .item > input[type='range'] {
+    z-index: 2;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    width:100%;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.video-card .item input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    background: rgb(0, 255, 0);
+    width:10px;
+    height:10px;
+    border-radius: 100%;
+    cursor: pointer;
+    border: 2px solid rgb(255, 51, 0);
+    box-shadow: -1007px 0 0 1000px rgb(0, 255, 0);
+}
+
+.video-card .item input[type='range']::-webkit-slider-runnable-track {
+    background: rgb(27,27,27);
+    height:10px;
+    width:100%;
+    -webkit-appearance: none;
+    appearance: none;
+    overflow: hidden
+}
+
+.video-card .item .info {
+    display: flex;
+    position: relative;
+    color: rgb(27,27,27)
+}
+
+.video-card .item .info div.publisher {
+    display: flex;
+    text-align: left
+}
+
+.video-card .item .info div.publisher img {
+    width:30px;
+    height:30px;
+    border-radius: 100%;
+    margin-right: 5px
+}
+
+.video-card .item .info div.publisher span {
+    font-weight: bold;
+    margin-right: 5px
+}
+
+.video-card .item .info p {
+    font-size: 16px;
+    margin-left: 15px;
+    text-align: center;
+}
+
+.video-card .item .share {
+    cursor: pointer;
+    position: absolute;
+    right: 100px
+}
+
+.video-card .item .info > span {
+    cursor: pointer;
+    position: absolute;
+    right: 20px
+}
+
+.video-card .item .info > span svg {
+    margin-left: 5px
+}
+
+.video-card .item.related-videos .video a{
+    display: block;
+    position: relative;
+    margin: 20px 0
+}
+
+.video-card .item.related-videos .video a video{
+    display: block;
+    background: rgb(27,27,27);
+    border-radius: 0;
+    width:100%;
+    height: 150px;
+    z-index: 1;
+}
+
+.video-card .item.related-videos .video a span{
+    display: block;
+    position: absolute;
+    top:0;left:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height: 100%;
+    z-index: 2;
+    color: rgb(0, 255, 0);
+    font-size: 40px;
+}

@@ -1,13 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import * as Worker from './serviceWorker'
 import 'bootstrap/dist/css/bootstrap.css'
 
-ReactDOM.render (
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.querySelector('#root')
+ReactDOM.render(
+    <App/>,
+    document.querySelector('#root')
 )
-serviceWorker.register()
+
+Worker.register()

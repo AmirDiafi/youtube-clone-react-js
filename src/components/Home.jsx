@@ -1,133 +1,83 @@
 import React from 'react'
+import * as Icons from 'react-icons/all'
 import './stylesheets/home.css'
-import {FaPlus, FaCheck} from 'react-icons/fa'
+import Data from '../data.json'
+import Video from './Video'
 
 class Home extends React.Component {
-
     constructor() {
         super()
-        this.file = React.createRef()
-        this.post = React.createRef()
-        this.form = React.createRef()
-        this.title = React.createRef()
-        this.submitButton = React.createRef()
         this.state = {
-            value: '',
-            isEmpty: true
+            value:'',
+            products: []
         }
-    }
-
-    handleFile = () => {
-        if(this.file.current.value!==null&&this.file.current.files[0].size <= 100000000) {
-            this.setState({isEmpty:false})
-            this.form.current.style.width='80%'
-            let title = this.title.current.style
-            title.opacity='1'
-            title.width='60%'
-        } else {
-            alert('file is too big, please select one less than 100MBs')
-        }
-    }
-
-    handlePost = (event) => {
-        event.preventDefault()
-        let file = this.file.current.files[0]
-        let reader = new FileReader()
-        reader.onloadstart = () => {
-            this.submitButton.current.innerHTML = 
-            `<img src='media/wait.gif' alt='' />`
-        }
-        reader.onloadend = () => {
-            if (reader.readyState === 2) {
-                this.submitButton.current.innerHTML = "Post"
-                if(file.type.slice(0, 5)==='image') {
-                        let post = `
-                        <div class='post'>
-                            <img src=${reader.result} alt='' />
-                            <div class='info'>
-                                <p>${this.state.value}</p>
-                                <span>&hearts;</span>
-                            </div>
-                            <div class='post-footer'></div>
-                        </div>
-                        `
-                        this.post.current.insertAdjacentHTML('afterbegin', post)   
-                } else if(file.type.slice(0, 5)==='video') {
-                        let post = `
-                        <div class='post'>
-                            <video controls src=${reader.result} type=${file.type}></video>
-                            <div class='info'>
-                                <p>${this.state.value}</p>
-                                <span>&hearts;</span>
-                            </div>
-                            <div class='post-footer'></div>
-                        </div>
-                        `
-                        this.post.current.insertAdjacentHTML('afterbegin', post)
-                }
-
-                setTimeout(()=> {
-                    this.file.current.value = null
-                    this.setState({value: '', isEmpty: true})
-                    this.form.current.style.width='40%'
-                    let title = this.title.current.style
-                    title.opacity='0'
-                    title.width='0'
-                }, 0)
-                    
-            } else {
-                alert('There is an error!')
-                this.submitButton.current.innerHTML = "Post"
-                this.file.current.value = null
-                this.setState({value: '', isEmpty: true})
-            }
-        }
-        reader.readAsDataURL(file)
-        
     }
 
     handleValue = (event) => {
-        this.setState({
-            value: event.target.value
-        })
+        this.setState({value: event.target.value})
     }
+
+    getData = async (value) => {
+        try {
+            let newData = Data.filter(result=>result.title
+                .toLowerCase().includes(value)||
+            result.tags.toLowerCase().includes(value))
+            this.setState({products: newData})
+        } catch (error) {
+            alert('please enter correct value')
+            console.log(error)
+        }
+        this.setState({value: ''})
+    }
+
+    componentDidMount () {
+        this.getData('nature')
+    }
+
+    getByUserSearch = (event) => {
+        event.preventDefault()
+        this.getData(this.state.value.toLowerCase())
+    }
+
     
-    render() {
+    render() { 
         return ( 
-            <div className='home-container'>
-                <div ref={this.form} className="form">
-                    <form onSubmit={this.handlePost}>
-                        <div className='file-upload'>
-                            <span>{this.state.isEmpty?<FaPlus />:<FaCheck />}</span>
-                            <input 
-                                type="file" 
-                                required 
-                                ref={this.file}
-                                accept='image/*, video/*'
-                                onChange={this.handleFile}
+            <div className='home'>
+                <form onSubmit={this.getByUserSearch}>
+                    <input 
+                        required
+                        value={this.state.value}
+                        onChange={this.handleValue}
+                        type='search' 
+                        placeholder='search'
+                    />
+                    <button 
+                        disabled={this.state.value===''} 
+                        type='submit' 
+                        className='btn'>
+                        <Icons.GoSearch />
+                    </button>
+                </form>
+
+                <div className='results row'>
+                    {(this.state.products.length!==0)
+                    ?this.state.products.map(result=>
+                        <div key={result.id}
+                            className='item col col-12 col-sm-4 col-md-3'>
+                            <Video 
+                                data={result}
+                                source={'media/videos/'+result.source}
                             />
                         </div>
-                        <input 
-                            type="text" 
-                            placeholder='Add Title' 
-                            required
-                            ref={this.title}
-                            value={this.state.value}
-                            onChange={this.handleValue}    
-                        />
-                        <button 
-                            type="submit" 
-                            ref={this.submitButton}
-                            className='btn btn-primary'
-                            disabled={this.state.value===''?true:false}
-                        >
-                            Post
-                        </button>
-                    </form>
+                    ):<div className='wait'>
+                        <img src='media/images/norecordfound.png' alt=''/>
+                        <h3 className='text-center'>
+                            There is no video found
+                        </h3>
+                    </div>}
                 </div>
-                <div className="posts" ref={this.post}></div>
             </div>
-        )
+         );
     }
 }
  

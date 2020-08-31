@@ -1,16 +1,12 @@
 import React from 'react'
-import './App.css'
-import Navbar from './components/Navbar'
+import Routers from './components/Routers'
 
 class App extends React.Component {
-  render() { 
-    return ( 
-      <React.Fragment>
-        <Navbar />
-        <div className='footer-line'></div>
-      </React.Fragment>
-     )
-  }
+    render() {
+        return(
+            <Routers />
+        )
+    }
 }
- 
-export default App;
+
+export default App
